@@ -6,6 +6,7 @@ import re
 from scrapy.http import Request
 from urlparse import urljoin
 from ArticleSpider.items import JobBoleArticleItem
+from ArticleSpider.utils.common import get_md5
 
 class JobboleSpider(scrapy.Spider):
     name = 'jobbole'
@@ -68,6 +69,7 @@ class JobboleSpider(scrapy.Spider):
         article_item["tags"] = tags
        
         article_item["front_image_url"] = [response.meta["front_image_url"]]
+        article_item["url_md5"] = get_md5(response.url)
         # pipeline the article item
         yield article_item 
         '''
