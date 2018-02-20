@@ -1,0 +1,8 @@
+
+<tag>  - select all children of the first <tag> element
+/<tag> - select the first <tag>, child of root element
+//<tag> - select all <tag>, wherever it occurs
+<tag>//<div>
+//@class
+
+
