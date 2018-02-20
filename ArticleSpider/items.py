@@ -18,6 +18,7 @@ class JobBoleArticleItem(scrapy.Item):
     created_date = scrapy.Field()
     url = scrapy.Field()
     front_image_url = scrapy.Field()
+    front_image_path = scrapy.Field()
     praise_num = scrapy.Field()
     comments_num = scrapy.Field()
     fav_num = scrapy.Field()

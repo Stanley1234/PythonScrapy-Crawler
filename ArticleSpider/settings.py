@@ -71,7 +71,8 @@ ITEM_PIPELINES = {
     'ArticleSpider.pipelines.ArticlespiderPipeline': 300,
 
     # scrapy provides tool to download images
-    'scrapy.pipelines.images.ImagesPipeline': 1
+    # 'scrapy.pipelines.images.ImagesPipeline': 1
+    'ArticleSpider.pipelines.ArticleImagePipeline': 1
 }
 
 # specify which field is the image url to be downloaded
