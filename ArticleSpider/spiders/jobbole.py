@@ -66,7 +66,8 @@ class JobboleSpider(scrapy.Spider):
         article_item["fav_num"] = fav_num
         article_item["comments_num"] = comments_num
         article_item["tags"] = tags
-        
+       
+        article_item["front_image_url"] = [response.meta["front_image_url"]]
         # pipeline the article item
         yield article_item 
         '''

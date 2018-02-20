@@ -8,6 +8,8 @@
 #     https://doc.scrapy.org/en/latest/topics/settings.html
 #     https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://doc.scrapy.org/en/latest/topics/spider-middleware.html
+import os
+
 
 BOT_NAME = 'ArticleSpider'
 
@@ -63,10 +65,21 @@ ROBOTSTXT_OBEY = False
 #}
 
 # Configure item pipelines
-# See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'ArticleSpider.pipelines.ArticlespiderPipeline': 300,
-#}
+ITEM_PIPELINES = {
+    # the number represents the priority for which data is pipelined
+    # a smaller number indicates a higher priority
+    'ArticleSpider.pipelines.ArticlespiderPipeline': 300,
+
+    # scrapy provides tool to download images
+    'scrapy.pipelines.images.ImagesPipeline': 1
+}
+
+# specify which field is the image url to be downloaded
+IMAGES_URLS_FIELD = "front_image_url"
+# the downloaded images are stored in the current directory/images
+project_dir = os.path.abspath(os.path.dirname(__file__))
+IMAGES_STORE = os.path.join(project_dir, "images")
+
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/autothrottle.html
