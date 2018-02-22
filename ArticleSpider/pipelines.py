@@ -7,6 +7,7 @@
 
 import json
 import codecs
+import MySQLdb
 
 from scrapy.pipelines.images import ImagesPipeline
 from scrapy.exporters import JsonItemExporter
@@ -39,7 +40,6 @@ class JsonExporterPipeline(object):
         self.exporter.finish_exporting()
         self.file.close()
 
-
 '''
 Scrapy provides json exporter. We can directly use it
 instead of creating a customized one.
@@ -63,3 +63,20 @@ class JsonWithEncodingPipeline(object):
         # release file handler
         self.file.close()
 
+class MysqlPipeline(object):
+    # synchronously write data to database
+    def __init__(self):
+        self.conn = MySQLdb.connect("127.0.0.1", "root", "stanley", "article_spider", 
+                                    charset = "utf8", use_unicode = True)
+        self.cursor = self.conn.cursor()
+    
+    def process_item(self, item, spider):
+        insert_sql = " \
+            insert into jobbole_article(title, url, url_md5, created_date)\
+            VALUES (%s, %s, %s, %s)\
+        "
+        self.cursor.execute(insert_sql, (item["title"], item["url"], item["url_md5"],
+                                         item["created_date"]))
+        self.conn.commit()
+        return item
+    

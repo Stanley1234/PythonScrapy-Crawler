@@ -78,7 +78,10 @@ ITEM_PIPELINES = {
     'ArticleSpider.pipelines.JsonWithEncodingPipeline': 2,
 
     # scrapy-provided json exporter:
-    'ArticleSpider.pipelines.JsonExporterPipeline': 3
+    'ArticleSpider.pipelines.JsonExporterPipeline': 3,
+
+    # sql database
+    'ArticleSpider.pipelines.MysqlPipeline': 4
 }
 
 # specify which field is the image url to be downloaded

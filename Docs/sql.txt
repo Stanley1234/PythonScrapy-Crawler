@@ -1,0 +1,17 @@
+
+OperationError: (1366, "Incorrect string value: '\\xE9\\x9C'")
+
+** Suppose the string in python program is encoded in UTF-8. If the encoding of database or table is not UTF-8, the error occurs.
+
+
+ProgrammingError: not all arguments converted during string formatting
+
+** Don't know the reason yet.
+
+ProgrammingError: (1064, "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '%s, %s, %s, %s)' at line 1")
+
+** Don't use _sql % (...). If (...) is encoded in UTF8, it cannot be decoded 
+   correctly in this way. Same reasom for not using .format function.
+** Use cursor.execute(sql, [params])
+
+

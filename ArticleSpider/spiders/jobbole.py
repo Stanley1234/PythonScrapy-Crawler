@@ -2,6 +2,8 @@
 
 import scrapy
 import re
+import datetime
+import sys
 
 from scrapy.http import Request
 from urlparse import urljoin
@@ -13,7 +15,6 @@ class JobboleSpider(scrapy.Spider):
     allowed_domains = ['blog.jobbole.com']
     start_urls = ['http://blog.jobbole.com/all-posts']
 
-    
     def parse(self, response):
         # parse all posts on the current page
         allposts = response.xpath("//div[@class='post floated-thumb']//div[@class='post-thumb']")
@@ -58,11 +59,11 @@ class JobboleSpider(scrapy.Spider):
         tag_list = response.xpath("//p[@class='entry-meta-hide-on-mobile']/a/text()").extract()
         tag_list = [element for element in tag_list if not element.strip().endswith(u"评论")]
         tags = ",".join(tag_list)
-
         
+        # everything returned by extract_first() is a unicode string
         article_item["url"] = response.url
         article_item["title"] = title
-        article_item["created_date"] = created_date
+        article_item["created_date"] = re.sub(r"\s+", "", created_date)
         article_item["praise_num"] = praise_num
         article_item["fav_num"] = fav_num
         article_item["comments_num"] = comments_num
