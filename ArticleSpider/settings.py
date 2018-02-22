@@ -72,7 +72,13 @@ ITEM_PIPELINES = {
 
     # scrapy provides tool to download images
     # 'scrapy.pipelines.images.ImagesPipeline': 1
-    'ArticleSpider.pipelines.ArticleImagePipeline': 1
+    'ArticleSpider.pipelines.ArticleImagePipeline': 1,
+
+    # customized json exporter
+    'ArticleSpider.pipelines.JsonWithEncodingPipeline': 2,
+
+    # scrapy-provided json exporter:
+    'ArticleSpider.pipelines.JsonExporterPipeline': 3
 }
 
 # specify which field is the image url to be downloaded
