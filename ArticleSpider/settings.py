@@ -72,13 +72,13 @@ ITEM_PIPELINES = {
 
     # scrapy provides tool to download images
     # 'scrapy.pipelines.images.ImagesPipeline': 1
-    'ArticleSpider.pipelines.ArticleImagePipeline': 1,
+    #'ArticleSpider.pipelines.ArticleImagePipeline': 1,
 
     # customized json exporter
-    'ArticleSpider.pipelines.JsonWithEncodingPipeline': 2,
+    #'ArticleSpider.pipelines.JsonWithEncodingPipeline': 2,
 
     # scrapy-provided json exporter:
-    'ArticleSpider.pipelines.JsonExporterPipeline': 3,
+    #'ArticleSpider.pipelines.JsonExporterPipeline': 3,
 
     # sql database
     #'ArticleSpider.pipelines.MysqlPipeline': 4
