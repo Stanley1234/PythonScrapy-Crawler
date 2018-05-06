@@ -66,7 +66,7 @@ class JsonWithEncodingPipeline(object):
 class MysqlPipeline(object):
     # synchronously write data to database
     def __init__(self):
-        self.conn = MySQLdb.connect("127.0.0.1", "root", "stanley", "article_spider", 
+        self.conn = MySQLdb.connect("127.0.0.1", "root", "****", "article_spider", 
                                     charset = "utf8", use_unicode = True)
         self.cursor = self.conn.cursor()
     
