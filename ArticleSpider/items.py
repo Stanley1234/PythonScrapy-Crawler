@@ -58,4 +58,10 @@ class LagouJobItem(scrapy.Item):
     description = scrapy.Field()
     addr = scrapy.Field()
 
+class XiciItemLoader(ItemLoader):
+    default_output_processor = TakeFirst()
 
+class XiciItem(scrapy.Item):
+    country = scrapy.Field()
+    ipaddr = scrapy.Field()
+    port = scrapy.Field()
